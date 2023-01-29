@@ -51,15 +51,16 @@ class UserController extends Controller
         // usersテーブルからemail一致データ抽出
         $user_info = User::where('email', $request->email)->get();
 
+        // メールアドレス一致しなかった時
+        if(!count($user_info)){
+            return view('login', ['login_error' => '1']);
+        }
+
         // アカウント削除したユーザーの判定
         if($user_info[0]->ban == 1){
             return view('login', ['ban_error' => '1']);
         }
-        
-        // 一致データないとき
-        if(count($user_info) == 0) {
-            return view('login', ['login_error' => '1']);
-        }
+
         
         // パスワードが一致するかどうか。
         if(password_verify($request->password, $user_info[0]->password)) {
