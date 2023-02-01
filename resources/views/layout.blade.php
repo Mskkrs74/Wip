@@ -19,11 +19,13 @@
                 @if(Session::get('role') == 0 && Session::get('ban') == 0)
                 <!-- ユーザー -->
                 <div class="col-md-5 text-md-end me-5">
-                    <a class="text-dark text-decoration-none p-1">{{ Session::get('name') }}&nbsp;さん</a>
                     <!-- ～mdまで表示 -->
+                    <a class="text-dark text-decoration-none d-md-none">{{ Session::get('name') }}&nbsp;さん<br></a>
                     <a href="{{ route('login') }}" class="text-light text-decoration-none p-1 d-md-none">ログアウト</a>
                     <!-- md～表示 -->
+                    <a class="text-dark text-decoration-none p-1 d-none d-md-inline">{{ Session::get('name') }}&nbsp;さん</a>
                     <a href="{{ route('login') }}" class="text-light text-decoration-none p-1 d-none d-md-inline">ログアウト<br></a>
+                    <!-- すべて表示 -->
                     <a href="{{ route('logo') }}" class="text-light text-decoration-none p-1">駐車場を探す</a>
                     <a href="{{ route('mypage') }}" class="text-light text-decoration-none p-1">マイページ</a>
                 </div>
